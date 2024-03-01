@@ -1,12 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basic Web Application</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cricket Score Tracker</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    h1 {
+        text-align: center;
+    }
+    .scoreboard {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        text-align: center;
+    }
+    .scoreboard div {
+        padding: 10px;
+        border: 1px solid #ccc;
+    }
+</style>
 </head>
 <body>
-    <h1>Hello, World!</h1>
-    <p>This is a basic web application.</p>
+<div class="container">
+    <h1>Cricket Score Tracker</h1>
+    <div class="scoreboard">
+        <div>Overs</div>
+        <div>Ball 1</div>
+        <div>Ball 2</div>
+        <div>Ball 3</div>
+        <div>Ball 4</div>
+        <div>Ball 5</div>
+        <div>Ball 6</div>
+        <div>Total Runs</div>
+    </div>
+    <div class="scoreboard">
+        <div id="overs">0</div>
+        <div id="ball1">-</div>
+        <div id="ball2">-</div>
+        <div id="ball3">-</div>
+        <div id="ball4">-</div>
+        <div id="ball5">-</div>
+        <div id="ball6">-</div>
+        <div id="totalRuns">0</div>
+    </div>
+    <button onclick="recordRuns()">Record Runs</button>
+</div>
+<script>
+    let overs = 0;
+    let balls = ["ball1", "ball2", "ball3", "ball4", "ball5", "ball6"];
+    let totalRuns = 0;
+
+    function recordRuns() {
+        if (overs < 6) {
+            overs++;
+            document.getElementById("overs").textContent = overs;
+            let currentRuns = 0;
+            balls.forEach(ball => {
+                let runs = Math.floor(Math.random() * 7); // Generate random runs (0-6)
+                document.getElementById(ball).textContent = runs;
+                currentRuns += runs;
+            });
+            totalRuns += currentRuns;
+            document.getElementById("totalRuns").textContent = totalRuns;
+        } else {
+            alert("Match Over!");
+        }
+    }
+</script>
 </body>
 </html>
